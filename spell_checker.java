@@ -10,10 +10,11 @@
 import java.util.HashSet; 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Arrays; 
 
 public class spell_checker{ 
 
-    private static Hashset<String> W = new HashSet<>(); 
+    private static HashSet<String> W = new HashSet<>(); 
 
     /* 
      * if W contains s then return a list containing only s 
@@ -37,12 +38,12 @@ public class spell_checker{
         s = s.toLowerCase(); 
         String[]result; 
         ArrayList<String> temp = new ArrayList<>(); 
-        ArrayLiSt<Character> s_char = new ArrayList<>(); 
+        ArrayList<Character> s_char = new ArrayList<>(); 
         ArrayList<Character> b_char = new ArrayList<>(); 
-        Char[] s_char_temp = s.toCharArray(); 
-        Set_toLowerCase(); 
+        char[] s_char_temp = s.toCharArray(); 
+        int n = s.length();  
         for(char c : s_char_temp){ 
-            s_char.add(a); 
+            s_char.add(c); 
         }
         if(W.contains(s)){ 
             for(String a: W){ 
@@ -51,60 +52,55 @@ public class spell_checker{
                     temp.add(a); 
                 }
             }
-            result = temp.toArray(); 
+            result = temp.toArray(new String[0]); 
             return result; 
         }
         for(String b : W){ 
             b = b.toLowerCase(); 
-            Char[] b_char_temp = b.toCharArray();
+            char[] b_char_temp = b.toCharArray();
             for(char d : b_char_temp){ 
                 b_char.add(d); 
             }
+            System.out.println("size: " + b_char.size()); 
             int count = 0; 
-            for(char e : b_char){ 
+            for(char e : s_char){ 
                 if(b_char.contains(e)){ 
                     count++; 
                 }
             }
-            if(b.length < 7 && (count >= n-1 && count <= n + 1)){ 
+            System.out.println(count); 
+            if(b.length() < 7 && (count >= n-1 && count <= n + 1)){ 
                 temp.add(b); 
             }
-            else if(b.length >= 7 && (count >= n - 2 && coutn <= n + 1)){ 
+            else if(b.length() >= 7 && (count >= n - 2 && count <= n + 1)){ 
                 temp.add(b); 
-            }
+            } 
+            b_char.clear(); 
         }
-        result = temp.toArray(); 
+        result = temp.toArray(new String[0]); 
         return result; 
     }
-
-    private static void Set_toLowerCase(){ 
-        for(String a: W){ 
-            W.remove(a); 
-            a = a.toLowerCase(); 
-            W.add(a); 
-        }
-    }
     public static void main(String[]args){  
-        W.add("Subtract"); 
-        /*
+        W.add("subtract"); 
         W.add("Subtrac"); 
         W.add("poop"); 
-        System.out.println(check("subtract")); 
-        W.remove("Subtract"); 
+        System.out.println(W.toString()); 
+        System.out.println(Arrays.toString(check("subtract"))); 
+        W.remove("subtract"); 
         W.remove("Subtrac"); 
         W.remove("poop"); 
-        W.add("Subtrac"); 
-        W.add("Subbtract"); 
-        W.add("Sabtrac"); 
-        System.out.println(check("subtract")); 
-        W.remove("Subtrac"); 
-        W.remove("Subbtract"); 
-        W.remove("Sabtrac"); 
+        W.add("subtrac"); 
+        W.add("subbtract"); 
+        W.add("sabtrac"); 
+        System.out.println(W.toString()); 
+        System.out.println(Arrays.toString(check("subtract"))); 
+        W.remove("subtrac"); 
+        W.remove("subbtract"); 
+        W.remove("sabtrac"); 
         W.add("doo"); 
         W.add("doord"); 
         W.add("doom"); 
         W.add("do"); 
-        System.out.println(check("door")); 
-        */
+        System.out.println(Arrays.toString(check("door"))); 
     }
 }
