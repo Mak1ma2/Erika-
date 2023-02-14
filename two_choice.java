@@ -20,6 +20,7 @@ import java.util.ArrayList;
 public class two_choice{ 
     static ArrayList<LinkedList> list = new ArrayList<>(); 
     static ArrayList<LinkedList> test = new ArrayList<>(); 
+    static ArrayList<LinkedList> test2 = new ArrayList<>(); 
 
     static int hashing1(String a){ 
         int code = 0;
@@ -91,7 +92,21 @@ public class two_choice{
         }
     }
 
-    
+    static void test2_add(String s){ 
+        int index = hashing2(s); 
+        for(int i = test2.size() ; i < index + 1; i++){ 
+            LinkedList temp = new LinkedList(); 
+            test2.add(temp); 
+        }
+        if(test2.get(index).head != null){ 
+            test2.get(index).add(s); 
+        }
+        else{ 
+            LinkedList temp2 = new LinkedList(); 
+            temp2.add(s); 
+            test2.set(index, temp2); 
+        }
+    }
 
     // "Bea", "Tim", "Len", "Moe", "Mia", "Zoe", "Sue", "Lou", "Rae", "Max", "Tod"
     public static void main(String[]args){ 
@@ -117,12 +132,27 @@ public class two_choice{
         test_add("Rae"); 
         test_add("Max"); 
         test_add("Tod"); 
+        test2_add("Bea"); 
+        test2_add("Tim"); 
+        test2_add("Len"); 
+        test2_add("Moe"); 
+        test2_add("Mia"); 
+        test2_add("Zoe"); 
+        test2_add("Sue"); 
+        test2_add("Lou"); 
+        test2_add("Rae"); 
+        test2_add("Max"); 
+        test2_add("Tod"); 
         for(LinkedList a : list){
             System.out.println(a.toString()); 
         }
         System.out.println("---------------------------------------------------------"); 
         for(LinkedList b : test){ 
             System.out.println(b.toString()); 
+        }
+        System.out.println("---------------------------------------------------------"); 
+        for(LinkedList c : test2){ 
+            System.out.println(c.toString()); 
         }
     }
 } 
