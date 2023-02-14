@@ -65,7 +65,7 @@ public class two_choice{
             LinkedList temp2 = new LinkedList(); 
             list.add(temp2); 
         }
-        int index = collision(list.get(index1)) < collision(list.get(index2)) ? index1 : index2; 
+        int index = collision(list.get(index1)) <= collision(list.get(index2)) ? index1 : index2; 
         if(list.get(index).head != null){ 
             list.get(index).add(s); 
         }
